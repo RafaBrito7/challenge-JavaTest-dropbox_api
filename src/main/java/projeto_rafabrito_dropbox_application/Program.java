@@ -1,5 +1,6 @@
 package projeto_rafabrito_dropbox_application;
 
+import java.io.File;
 import java.util.Scanner;
 
 import com.dropbox.core.DbxException;
@@ -17,7 +18,7 @@ public class Program {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		CreateClient creatCl = new CreateClient();
-		GetFilesOrFolders files = new GetFilesOrFolders();
+		GetFilesOrFolders getFiles = new GetFilesOrFolders();
 		FolderIsEmpty empty = new FolderIsEmpty();
 		UploadFile uploadFile = new UploadFile();
 
@@ -34,10 +35,10 @@ public class Program {
 		}
 
 		System.out.println("The List of all your Files in DropBox Folder: ");
-		
+
 		// Método para Listar os arquivos da Pasta que eu Escolhi no DropBox
 		try {
-			files.getFilesDb(client);
+			getFiles.getFilesDb(client);
 
 		} catch (ListFolderErrorException e) {
 			e.printStackTrace();
@@ -45,23 +46,22 @@ public class Program {
 		} catch (DbxException e) {
 			e.printStackTrace();
 		}
-		
+
 		// Consumidora de Linha em branco(bug do Scanner)
 		sc.nextLine();
-		
-		
+
 		System.out.println("Enter a Path in your PC to see the files: ");
-		String path = sc.nextLine(); 
-		
+		String path = sc.nextLine();
+
 		if (empty.IsEmpty(path)) {
 			System.out.println("Pasta Vazia!");
-			//Colocar Exception Personalizada
+			// Colocar Exception Personalizada
 			System.exit(0);
 		} else {
-			files.getFilesPath(path);
+			getFiles.getFilesPath(path);
 		}
-		
-		System.out.println("Do you want to upload the files to DropBox?(Y/N)");
+
+		System.out.println("Do you want to upload One file to DropBox?(Y/N)");
 		answer = sc.next().charAt(0);
 
 		sc.nextLine();
@@ -69,17 +69,25 @@ public class Program {
 			System.out.println("Choose a File and Enter the Path with the File Name");
 			System.out.println("[Example: D:\\Documentos\\img01.png]");
 			path = sc.nextLine();
-			
-			uploadFile.upload(client,path);
+
+			uploadFile.uploadOne(client, path);
 		}
 
 		System.out.println("Your Files in DropBox Updated: ");
 		try {
-			files.getFilesDb(client);
-		} 
-		catch (DbxException e) {
+			getFiles.getFilesDb(client);
+		} catch (DbxException e) {
 			e.printStackTrace();
 		}
+
+		System.out.println("Do yout want Upload all Files in the Path?(Y/N)");
+		answer = sc.next().charAt(0);
+
+		if (Character.toUpperCase(answer) == 'Y') {
+			uploadFile.uploadAll(client, path);
+			System.out.println("All Files are Uploaded!");
+		}
+
 		sc.close();
 	}
 
