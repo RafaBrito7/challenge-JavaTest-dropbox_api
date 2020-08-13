@@ -33,7 +33,7 @@ public class UploadFile {
 				client.files().uploadBuilder("/TESTE DROPBOX/" + file2.getName()).withMode(WriteMode.OVERWRITE)
 				.uploadAndFinish(fileUpload);
 				
-				System.out.println(file2.getName() + " - Uploaded!");
+				System.out.println("[" + file2.getName() + "] - UPLOAD SUCCESS!");
 			}
 		} catch (Exception e) {
 			System.out.println("Error: " + e.getMessage());

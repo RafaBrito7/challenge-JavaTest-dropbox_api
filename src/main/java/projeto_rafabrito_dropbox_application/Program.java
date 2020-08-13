@@ -71,9 +71,9 @@ public class Program {
 		if (Character.toUpperCase(answer) == 'Y') {
 			System.out.println("Choose a File and Enter the Path with the File Name");
 			System.out.println("[Example: D:\\Documentos\\img01.png]");
-			path = sc.nextLine();
+			String pathFile = sc.nextLine();
 
-			uploadFile.uploadOne(client, path);
+			uploadFile.uploadOne(client, pathFile);
 		}
 
 		System.out.println("Your Files in DropBox Updated: ");
