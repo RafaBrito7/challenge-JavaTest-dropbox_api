@@ -1,12 +1,12 @@
 package projeto_rafabrito_dropbox_application;
 
-import java.io.File;
 import java.util.Scanner;
 
 import com.dropbox.core.DbxException;
 import com.dropbox.core.v2.DbxClientV2;
 import com.dropbox.core.v2.files.ListFolderErrorException;
 
+import projeto_rafabrito_dropbox_resources.DownloadFile;
 import projeto_rafabrito_dropbox_resources.UploadFile;
 import projeto_rafabrito_dropbox_services.CreateClient;
 import projeto_rafabrito_dropbox_services.FolderIsEmpty;
@@ -21,6 +21,7 @@ public class Program {
 		GetFilesOrFolders getFiles = new GetFilesOrFolders();
 		FolderIsEmpty empty = new FolderIsEmpty();
 		UploadFile uploadFile = new UploadFile();
+		DownloadFile downloadFile = new DownloadFile();
 
 		DbxClientV2 client = creatCl.creatClient();
 
@@ -50,6 +51,7 @@ public class Program {
 		// Consumidora de Linha em branco(bug do Scanner)
 		sc.nextLine();
 
+		System.out.println();
 		System.out.println("Enter a Path in your PC to see the files: ");
 		String path = sc.nextLine();
 
@@ -61,6 +63,7 @@ public class Program {
 			getFiles.getFilesPath(path);
 		}
 
+		System.out.println();
 		System.out.println("Do you want to upload One file to DropBox?(Y/N)");
 		answer = sc.next().charAt(0);
 
@@ -80,12 +83,28 @@ public class Program {
 			e.printStackTrace();
 		}
 
+		System.out.println();
 		System.out.println("Do yout want Upload all Files in the Path?(Y/N)");
 		answer = sc.next().charAt(0);
 
 		if (Character.toUpperCase(answer) == 'Y') {
 			uploadFile.uploadAll(client, path);
 			System.out.println("All Files are Uploaded!");
+		}
+		
+		System.out.println();
+		System.out.println("Do your want to Download One File in the Path?(Y/N)");
+		answer = sc.next().charAt(0);
+
+		sc.nextLine();
+		if (Character.toUpperCase(answer) == 'Y') {
+			System.out.println("Enter a Path in your PC to download File: ");
+			String pathPc = sc.nextLine();
+			System.out.println("Enter a name of File to Download: ");
+			String pathDb = sc.nextLine();
+			
+			downloadFile.downloadOne(client, pathPc, pathDb);
+			System.out.println("All Files are Downloaded!");
 		}
 
 		sc.close();

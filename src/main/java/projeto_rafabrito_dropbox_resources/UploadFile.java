@@ -36,7 +36,8 @@ public class UploadFile {
 				System.out.println(file2.getName() + " - Uploaded!");
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("Error: " + e.getMessage());
+			e.printStackTrace();
 		}
 	}
 }
