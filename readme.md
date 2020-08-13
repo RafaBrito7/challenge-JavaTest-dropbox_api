@@ -2,7 +2,7 @@
 
 ## Desafio Prático de um Processo Seletivo para Desenvolvedor Java Jr.
 
-### Faltando terminar, última ATUALIZAÇÃO 12/08/2020 ás 00h
+### Faltando terminar, Última Modificação 13/08/2020 ás 00h
 
 ## Como testar a aplicação:
 
