@@ -24,6 +24,7 @@ public class Program {
 		DbxClientV2 client = creatCl.creatClient();
 
 		// Confirmação de que está logado no meu DropBox (Acess_Code)
+		// Mudar o ACCESS_TOKEN ao Startar a Aplicação na Class CreateClient
 		System.out.println("Do you want to see account information?(Y/N)");
 		Character answer = sc.next().charAt(0);
 
@@ -32,7 +33,7 @@ public class Program {
 			getAccountInfo.getAccountInfo(client);
 		}
 
-		System.out.println("The List of all your Files and Folders in DropBox Folder: ");
+		System.out.println("The List of all your Files in DropBox Folder: ");
 		
 		// Método para Listar os arquivos da Pasta que eu Escolhi no DropBox
 		try {
@@ -49,7 +50,7 @@ public class Program {
 		sc.nextLine();
 		
 		
-		System.out.println("Enter a Path in your PC to sincronyze the files with DropBox: ");
+		System.out.println("Enter a Path in your PC to see the files: ");
 		String path = sc.nextLine(); 
 		
 		if (empty.IsEmpty(path)) {
@@ -60,11 +61,16 @@ public class Program {
 			files.getFilesPath(path);
 		}
 		
-		System.out.println("Do you want to upload the files to DropBox?");
+		System.out.println("Do you want to upload the files to DropBox?(Y/N)");
 		answer = sc.next().charAt(0);
 
+		sc.nextLine();
 		if (Character.toUpperCase(answer) == 'Y') {
-			uploadFile.upload(client);
+			System.out.println("Choose a File and Enter the Path with the File Name");
+			System.out.println("[Example: D:\\Documentos\\img01.png]");
+			path = sc.nextLine();
+			
+			uploadFile.upload(client,path);
 		}
 
 		System.out.println("Your Files in DropBox Updated: ");

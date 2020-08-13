@@ -4,7 +4,7 @@ import com.dropbox.core.DbxRequestConfig;
 import com.dropbox.core.v2.DbxClientV2;
 
 public class CreateClient {
-	private static final String ACCESS_TOKEN = "t7lbrfXAXkAAAAAAAAAAASL2XfSMY-6An6-tbVF-YA5QtusFng3S4eh_0CV2zWMY";
+	private static final String ACCESS_TOKEN = "";
 
 	public DbxClientV2 creatClient() {
 		// Criando Dropbox Client

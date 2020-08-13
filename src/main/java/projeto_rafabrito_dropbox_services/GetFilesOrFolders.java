@@ -14,15 +14,17 @@ public class GetFilesOrFolders {
 		ListFolderResult result = client.files().listFolder("/TESTE DROPBOX");
 
 		int count = 0;
+		
+		System.out.println("In the Path: " + "root/TESTE DROPBOX");
 
 		while (true) {
 			for (Metadata metadata : result.getEntries()) {
-				System.out.println((count + 1) + " - [" + metadata.getPathLower() + "]");
+				System.out.println((count + 1) + " - [" + metadata.getName() + "]");
 				count++;
 			}
 
 			if (!result.getHasMore()) {
-				System.out.println("Total Files and Folders in your DropBox = " + count);
+				System.out.println("Total Files in your DropBox = " + count);
 				break;
 			}
 
